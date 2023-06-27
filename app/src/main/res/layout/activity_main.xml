@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/home_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        app:srcCompat="@drawable/home_page" />
+
+    <ImageView
+        android:id="@+id/sylvan_essence"
+        android:layout_width="530px"
+        android:layout_height="160px"
+        android:layout_marginStart="20px"
+        android:layout_marginTop="20px"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/chiffre_1" />
+
+    <ImageView
+        android:id="@+id/cristal"
+        android:layout_width="530px"
+        android:layout_height="160px"
+        android:layout_marginStart="20px"
+        android:layout_marginTop="200px"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/chiffre_2" />
+
+    <TextView
+        android:id="@+id/txt_sylvan_essence"
+        android:layout_width="330px"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200px"
+        android:layout_marginTop="30px"
+        android:fontFamily="@font/vt323"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textColor="@color/blue"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_cristal"
+        android:layout_width="330px"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200px"
+        android:layout_marginTop="210px"
+        android:fontFamily="@font/vt323"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textColor="@color/blue"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/notif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/notif"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ImageView
+        android:id="@+id/btn_shop"
+        android:layout_width="192px"
+        android:layout_height="198px"
+        android:layout_marginStart="175px"
+        android:layout_marginTop="1990px"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/magasin" />
+
+    <ImageView
+        android:id="@+id/btn_clicker_arbre"
+        android:layout_width="445px"
+        android:layout_height="372px"
+        android:layout_marginStart="315px"
+        android:layout_marginTop="420px"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/arbre" />
+
+    <ImageView
+        android:id="@+id/btn_clicker_fonderie"
+        android:layout_width="400px"
+        android:layout_height="274px"
+        android:layout_marginStart="500px"
+        android:layout_marginTop="970px"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/fonderie" />
+
+    <ImageView
+        android:id="@+id/btn_ranking"
+        android:layout_width="192px"
+        android:layout_height="198px"
+        android:layout_marginStart="430px"
+        android:layout_marginTop="1990px"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/classement" />
+
+    <ImageView
+        android:id="@+id/btn_settings"
+        android:layout_width="192px"
+        android:layout_height="198px"
+        android:layout_marginStart="685px"
+        android:layout_marginTop="1990px"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/parametres" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
