@@ -16,32 +16,32 @@
 
     <ImageView
         android:id="@+id/sylvan_essence"
-        android:layout_width="530px"
-        android:layout_height="160px"
-        android:layout_marginStart="20px"
-        android:layout_marginTop="20px"
+        android:layout_width="192dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/chiffre_1" />
 
     <ImageView
         android:id="@+id/cristal"
-        android:layout_width="530px"
-        android:layout_height="160px"
-        android:layout_marginStart="20px"
-        android:layout_marginTop="200px"
+        android:layout_width="192dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/chiffre_2" />
 
     <TextView
         android:id="@+id/txt_sylvan_essence"
-        android:layout_width="330px"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200px"
-        android:layout_marginTop="30px"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/vt323"
-        android:text="0"
+        android:text=""
         android:textAlignment="textEnd"
         android:textColor="@color/blue"
         android:textSize="35sp"
@@ -50,17 +50,68 @@
 
     <TextView
         android:id="@+id/txt_cristal"
-        android:layout_width="330px"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200px"
-        android:layout_marginTop="210px"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="76dp"
         android:fontFamily="@font/vt323"
-        android:text="0"
+        android:text=""
         android:textAlignment="textEnd"
         android:textColor="@color/blue"
         android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/btn_shop"
+        android:layout_width="69dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="723dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/magasin" />
+
+    <ImageView
+        android:id="@+id/btn_clicker_arbre"
+        android:layout_width="161dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="152dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/arbre" />
+
+    <ImageView
+        android:id="@+id/btn_clicker_fonderie"
+        android:layout_width="145dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="181dp"
+        android:layout_marginTop="352dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/fonderie" />
+
+    <ImageView
+        android:id="@+id/btn_ranking"
+        android:layout_width="69dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="723dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/classement" />
+
+    <ImageView
+        android:id="@+id/btn_settings"
+        android:layout_width="69dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="249dp"
+        android:layout_marginTop="723dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/parametres" />
 
     <ImageView
         android:id="@+id/notif"
@@ -70,54 +121,17 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
-    <ImageView
-        android:id="@+id/btn_shop"
-        android:layout_width="192px"
-        android:layout_height="198px"
-        android:layout_marginStart="175px"
-        android:layout_marginTop="1990px"
-        app:layout_constraintTop_toTopOf="parent"
+    <TextView
+        android:id="@+id/txt_notif"
+        android:layout_width="272dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="638dp"
+        android:fontFamily="@font/vt323"
+        android:text=""
+        android:textColor="@color/blue"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/magasin" />
-
-    <ImageView
-        android:id="@+id/btn_clicker_arbre"
-        android:layout_width="445px"
-        android:layout_height="372px"
-        android:layout_marginStart="315px"
-        android:layout_marginTop="420px"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/arbre" />
-
-    <ImageView
-        android:id="@+id/btn_clicker_fonderie"
-        android:layout_width="400px"
-        android:layout_height="274px"
-        android:layout_marginStart="500px"
-        android:layout_marginTop="970px"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/fonderie" />
-
-    <ImageView
-        android:id="@+id/btn_ranking"
-        android:layout_width="192px"
-        android:layout_height="198px"
-        android:layout_marginStart="430px"
-        android:layout_marginTop="1990px"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/classement" />
-
-    <ImageView
-        android:id="@+id/btn_settings"
-        android:layout_width="192px"
-        android:layout_height="198px"
-        android:layout_marginStart="685px"
-        android:layout_marginTop="1990px"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/parametres" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
