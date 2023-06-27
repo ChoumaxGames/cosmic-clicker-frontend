@@ -1,14 +1,10 @@
 package fr.matteo_appmob.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -128,5 +124,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         thread.start();
+
+        ImageView btn_clicker_arbre = findViewById(R.id.btn_clicker_arbre);
+        btn_clicker_arbre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cristalTotal[0] += 10;
+                setTotal(cristal, cristalTotal[0]);
+            }
+        });
+
+        ImageView btn_clicker_fonderie = findViewById(R.id.btn_clicker_fonderie);
+        btn_clicker_fonderie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sylvan_essenceTotal[0] += 5;
+                setTotal(cristal, sylvan_essenceTotal[0]);
+            }
+        });
+
     }
 }
