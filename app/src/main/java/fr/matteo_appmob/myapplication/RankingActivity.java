@@ -5,9 +5,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import java.io.IOException;
+
+import fr.matteo_appmob.myapplication.backend.api.ApiUser;
 
 public class RankingActivity extends AppCompatActivity {
 
@@ -23,13 +29,15 @@ public class RankingActivity extends AppCompatActivity {
 
         this.listRanking = findViewById(R.id.list_ranking);
 
-        listRanking.addView(new RankingView(getApplicationContext(), "Matteo", 1, 1_000_000));
-        listRanking.addView(new RankingView(getApplicationContext(), "Mehdi", 2, 900));
-        listRanking.addView(new RankingView(getApplicationContext(), "Toto", 3, 500));
-        listRanking.addView(new RankingView(getApplicationContext(), "Olimerde", 4, 1));
-        listRanking.addView(new RankingView(getApplicationContext(), "Moi", 5, 0));
-        listRanking.addView(new RankingView(getApplicationContext(), "Tata", 6, 0));
-        listRanking.addView(new RankingView(getApplicationContext(), "Test", 7, 0));
+        try {
+            ApiUser.getAllPlayers();
+        } catch (IOException e) {
+            Toast t = new Toast(this);
+            t.setText(e.toString());
+            t.show();
+
+            Log.d("ERREUR DE SES MORT", e.toString());
+        }
 
         ImageView btnExit = findViewById(R.id.btn_exit_ranking);
         btnExit.setOnClickListener(new View.OnClickListener() {

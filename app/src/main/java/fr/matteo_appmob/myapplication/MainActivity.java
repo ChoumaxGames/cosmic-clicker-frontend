@@ -8,14 +8,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import fr.matteo_appmob.myapplication.backend.clicker.CosmicClicker;
+import fr.matteo_appmob.myapplication.backend.clicker.IClicker;
+import fr.matteo_appmob.myapplication.backend.planets.XyronPrime;
 
-    final int[] cristalTotal = {0};
-    final int[] sylvan_essenceTotal = {0};
+public class MainActivity extends AppCompatActivity {
     final int[] currentWord = {1};
     private String[] txt_welcome = {};
 
-    public void setTotal(TextView place, int total){
+    public void setTotal(TextView place, long total){
         place.setText(String.valueOf(total));
     }
 
@@ -27,13 +28,22 @@ public class MainActivity extends AppCompatActivity {
         int UI_OPTIONS = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
         getWindow().getDecorView().setSystemUiVisibility(UI_OPTIONS);
 
+
+        IClicker cosmicClicker = CosmicClicker.getInstance();
+        cosmicClicker.addPlanets(new XyronPrime());
+        cosmicClicker.setCurrentPlanet(cosmicClicker.getPlanetById(XyronPrime.PLANET_ID));
+        cosmicClicker.getCurrentPlanet().run();
+
+
         txt_welcome = getResources().getStringArray(R.array.txt_welcome);
 
         ImageView imgNotify = findViewById(R.id.notif);
 
         TextView txtNotify = findViewById(R.id.txt_notif);
-        txtNotify.setText(txt_welcome[0]);
+        //txtNotify.setText(txt_welcome[0]);
 
+        imgNotify.setVisibility(ImageView.INVISIBLE);
+        txtNotify.setText("");
         Thread threadTuto = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -66,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        threadTuto.start();
+        //threadTuto.start();
 
         ImageView btnShop = findViewById(R.id.btn_shop);
         btnShop.setOnClickListener(new View.OnClickListener() {
@@ -110,10 +120,8 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                cristalTotal[0] += 2;
-                                sylvan_essenceTotal[0] += 1;
-                                setTotal(cristal, cristalTotal[0]);
-                                setTotal(sylvan_essence, sylvan_essenceTotal[0]);
+                                setTotal(cristal, CosmicClicker.getInstance().getCurrentPlanet().getCrystals());
+                                setTotal(sylvan_essence, CosmicClicker.getInstance().getEssences());
                             }
                         });
                     } catch (InterruptedException e) {
@@ -129,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
         btn_clicker_arbre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cristalTotal[0] += 10;
-                setTotal(cristal, cristalTotal[0]);
+                CosmicClicker.getInstance().getCurrentPlanet().addCrystal(1);
+                setTotal(cristal, CosmicClicker.getInstance().getCurrentPlanet().getCrystals());
             }
         });
 
@@ -138,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
         btn_clicker_fonderie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sylvan_essenceTotal[0] += 5;
-                setTotal(cristal, sylvan_essenceTotal[0]);
+                CosmicClicker.getInstance().addEssences(1);
+                setTotal(sylvan_essence, CosmicClicker.getInstance().getEssences());
             }
         });
 

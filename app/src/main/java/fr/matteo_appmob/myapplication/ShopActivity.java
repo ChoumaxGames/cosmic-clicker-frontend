@@ -9,6 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.matteo_appmob.myapplication.backend.buildings.Arboretum;
+import fr.matteo_appmob.myapplication.backend.buildings.IBuilding;
+import fr.matteo_appmob.myapplication.backend.clicker.CosmicClicker;
+
 public class ShopActivity extends AppCompatActivity {
 
     ImageView btnMulti1;
@@ -19,23 +23,22 @@ public class ShopActivity extends AppCompatActivity {
 
     final int[] selectedMulti = {1};
 
-    public void updateMulti(){
-        if(this.selectedMulti[0] != 1) this.btnMulti1.setImageResource(R.drawable.boutton_multi);
-        if(this.selectedMulti[0] != 10) this.btnMulti10.setImageResource(R.drawable.boutton_multi);
-        if(this.selectedMulti[0] != 100) this.btnMulti100.setImageResource(R.drawable.boutton_multi);
+    public void updateMulti() {
+        if (this.selectedMulti[0] != 1) this.btnMulti1.setImageResource(R.drawable.boutton_multi);
+        if (this.selectedMulti[0] != 10) this.btnMulti10.setImageResource(R.drawable.boutton_multi);
+        if (this.selectedMulti[0] != 100)
+            this.btnMulti100.setImageResource(R.drawable.boutton_multi);
         updatePrice();
     }
 
-    public void updatePrice(){
-        if(this.selectedMulti[0] == 1){
-            this.price_upgrade1.setText("1000");
+    public void updatePrice() {
+        if (this.selectedMulti[0] == 1) {
+            this.price_upgrade1.setText(String.valueOf(CosmicClicker.getInstance().getCurrentPlanet().getBuildingByClazz(Arboretum.class).getPrice()));
             this.price_upgrade2.setText("1000");
-        }
-        else if(this.selectedMulti[0] == 10){
+        } else if (this.selectedMulti[0] == 10) {
             this.price_upgrade1.setText("10000");
             this.price_upgrade2.setText("10000");
-        }
-        else if(this.selectedMulti[0] == 100){
+        } else if (this.selectedMulti[0] == 100) {
             this.price_upgrade1.setText("100000");
             this.price_upgrade2.setText("100000");
         }
@@ -52,6 +55,7 @@ public class ShopActivity extends AppCompatActivity {
         this.price_upgrade1 = findViewById(R.id.price_upgrade1);
         this.price_upgrade2 = findViewById(R.id.price_upgrade2);
         btnMulti1.setImageResource(R.drawable.boutton_multi_select);
+        updatePrice();
 
         int UI_OPTIONS = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
         getWindow().getDecorView().setSystemUiVisibility(UI_OPTIONS);
@@ -102,7 +106,15 @@ public class ShopActivity extends AppCompatActivity {
         btnUpgrade1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Arboretum amélioré !", Toast.LENGTH_SHORT).show();
+                IBuilding b = CosmicClicker.getInstance().getCurrentPlanet().getBuildingByClazz(Arboretum.class);
+                int price = b.getPrice();
+                if (CosmicClicker.getInstance().getCurrentPlanet().getCrystals() >= price) {
+                    b.purchase();
+                    CosmicClicker.getInstance().getCurrentPlanet().addCrystal(-price);
+                    updatePrice();
+                    Toast.makeText(getApplicationContext(), "Arboretum amélioré !", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), "Pas assez de cristaux !", Toast.LENGTH_SHORT).show();
             }
         });
 
