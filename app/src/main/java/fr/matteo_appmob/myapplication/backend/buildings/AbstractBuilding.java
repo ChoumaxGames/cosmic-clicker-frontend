@@ -30,6 +30,24 @@ public abstract class AbstractBuilding implements IBuilding {
         return (int) price;
     }
 
+    public int getPrice10() {
+        double price = 0;
+
+        for (int i = 0; i < 10; i++) {
+            price += this.getInitialPrice() * (Math.pow(this.getPriceMultiplier(), getCountUpgrade() + i));
+        }
+        return (int) price;
+    }
+
+    public int getPrice100() {
+        double price = 0;
+
+        for (int i = 0; i < 100; i++) {
+            price += this.getInitialPrice() * (Math.pow(this.getPriceMultiplier(), getCountUpgrade() + i));
+        }
+        return (int) price;
+    }
+
     public void purchase() {
 
         this.countPurchases++;

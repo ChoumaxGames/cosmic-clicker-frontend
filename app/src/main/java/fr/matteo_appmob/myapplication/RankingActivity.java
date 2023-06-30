@@ -3,6 +3,7 @@ package fr.matteo_appmob.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,15 +30,12 @@ public class RankingActivity extends AppCompatActivity {
 
         this.listRanking = findViewById(R.id.list_ranking);
 
-        try {
-            ApiUser.getAllPlayers();
-        } catch (IOException e) {
-            Toast t = new Toast(this);
-            t.setText(e.toString());
-            t.show();
-
-            Log.d("ERREUR DE SES MORT", e.toString());
-        }
+        this.listRanking.addView(new RankingView(this, "Matteo", 1, 10000));
+        this.listRanking.addView(new RankingView(this, "Mehdi", 2, 9000));
+        this.listRanking.addView(new RankingView(this, "Théo", 3, 1000));
+        this.listRanking.addView(new RankingView(this, "Toto", 4, 100));
+        this.listRanking.addView(new RankingView(this, "Véro", 5, 10));
+        this.listRanking.addView(new RankingView(this, "Olivétom", 6, 1));
 
         ImageView btnExit = findViewById(R.id.btn_exit_ranking);
         btnExit.setOnClickListener(new View.OnClickListener() {

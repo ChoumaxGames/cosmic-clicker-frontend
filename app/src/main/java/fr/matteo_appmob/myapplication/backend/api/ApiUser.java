@@ -1,5 +1,7 @@
 package fr.matteo_appmob.myapplication.backend.api;
 
+import android.util.Log;
+
 import cz.msebera.android.httpclient.entity.StringEntity;
 import fr.matteo_appmob.myapplication.backend.players.PlayerRankRecord;
 import fr.matteo_appmob.myapplication.backend.players.PlayerRecord;
@@ -10,6 +12,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 
 public class ApiUser {
 
@@ -59,23 +62,43 @@ public class ApiUser {
     }
 
     public static PlayerRecord createPlayer(String name) throws IOException {
-        ObjectNode objectNode = ApiUser.objectMapper.createObjectNode();
-        objectNode.put("name", name);
-        String response = ApiManager.post("/user/create", new StringEntity(objectNode.toString()));
+        try {
+            ObjectNode objectNode = ApiUser.objectMapper.createObjectNode();
+            objectNode.put("name", name);
+            String response = ApiManager.post("/user/create", new StringEntity(objectNode.toString())).get();
+            return getPlayerFromResponse(response);
+        } catch (Exception e) {
+            return null;
+        }
 
-        return getPlayerFromResponse(response);
     }
 
     public static PlayerRecord getPlayer(String uid) throws IOException {
-        String response = ApiManager.get("/user/" + uid);
+        try {
+            String response = ApiManager.get("/user/" + uid).get();
+            return getPlayerFromResponse(response);
+        } catch (Exception e) {
+            return null;
+        }
 
-        return getPlayerFromResponse(response);
     }
 
     public static List<PlayerRankRecord> getAllPlayers() throws IOException {
-        String response = ApiManager.get("/user/all").toString();
+        try {
 
-        return getPlayerRankFromResponse(response);
+
+            Future<String> response = ApiManager.get("/user/all");
+
+            while (!response.isDone()) {
+
+            }
+
+            return getPlayerRankFromResponse(response.get());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
 }

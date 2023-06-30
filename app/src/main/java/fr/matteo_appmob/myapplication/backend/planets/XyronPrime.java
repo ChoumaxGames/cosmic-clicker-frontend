@@ -1,7 +1,9 @@
 package fr.matteo_appmob.myapplication.backend.planets;
 
 import fr.matteo_appmob.myapplication.backend.buildings.Arboretum;
+import fr.matteo_appmob.myapplication.backend.buildings.FonderieCrystalline;
 import fr.matteo_appmob.myapplication.backend.resources.crystals.SapCrystal;
+import fr.matteo_appmob.myapplication.backend.resources.essences.SylvanEssence;
 
 /**
  * First Planet
@@ -12,7 +14,9 @@ public class XyronPrime extends AbstractPlanet {
 
     public XyronPrime() {
         resources.add(new SapCrystal());
+        resources.add(new SylvanEssence());
         buildings.add(new Arboretum());
+        buildings.add(new FonderieCrystalline());
     }
 
     @Override

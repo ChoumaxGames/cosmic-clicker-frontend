@@ -17,6 +17,10 @@ public interface IBuilding {
 
     int getPrice();
 
+    int getPrice10();
+
+    int getPrice100();
+
     void purchase();
 
     int getCountUpgrade();

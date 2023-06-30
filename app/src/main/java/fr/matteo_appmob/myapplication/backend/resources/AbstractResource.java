@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractResource implements IResource{
 
-    protected long            generatingTime = 2;
+    protected long            generatingTime = 1;
     private       boolean         isGenerating = false;
     private final List<IBuilding> multipliers  = new ArrayList<>();
 

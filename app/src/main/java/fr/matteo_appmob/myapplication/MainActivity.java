@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import fr.matteo_appmob.myapplication.backend.buildings.Arboretum;
+import fr.matteo_appmob.myapplication.backend.buildings.FonderieCrystalline;
+import fr.matteo_appmob.myapplication.backend.buildings.IBuilding;
 import fr.matteo_appmob.myapplication.backend.clicker.CosmicClicker;
 import fr.matteo_appmob.myapplication.backend.clicker.IClicker;
 import fr.matteo_appmob.myapplication.backend.planets.XyronPrime;
@@ -17,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] txt_welcome = {};
 
     public void setTotal(TextView place, long total){
-        place.setText(String.valueOf(total));
+        place.setText(ShopActivity.formatPrice((int) total));
     }
 
     @Override
@@ -38,45 +41,10 @@ public class MainActivity extends AppCompatActivity {
         txt_welcome = getResources().getStringArray(R.array.txt_welcome);
 
         ImageView imgNotify = findViewById(R.id.notif);
-
         TextView txtNotify = findViewById(R.id.txt_notif);
-        //txtNotify.setText(txt_welcome[0]);
 
         imgNotify.setVisibility(ImageView.INVISIBLE);
         txtNotify.setText("");
-        Thread threadTuto = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final boolean[] finish = {false};
-                while(!finish[0]){
-                    try {
-                        Thread.sleep(5000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (finish[0]){
-                                    imgNotify.setVisibility(ImageView.INVISIBLE);
-                                    txtNotify.setText("");
-                                    return;
-                                }
-                                imgNotify.setVisibility(ImageView.VISIBLE);
-                                txtNotify.setText(txt_welcome[currentWord[0]]);
-                                if(currentWord[0] >= txt_welcome.length - 1){
-                                    finish[0] = true;
-                                    currentWord[0] = 0;
-                                    return;
-                                }
-                                currentWord[0]++;
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        //threadTuto.start();
 
         ImageView btnShop = findViewById(R.id.btn_shop);
         btnShop.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 while(true){
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(500);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -137,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
         btn_clicker_arbre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CosmicClicker.getInstance().getCurrentPlanet().addCrystal(1);
+                IBuilding b = CosmicClicker.getInstance().getCurrentPlanet().getBuildingByClazz(Arboretum.class);
+                CosmicClicker.getInstance().getCurrentPlanet().addCrystal(b.getMultiplicator() == 0 ? 1 : b.getMultiplicator());
                 setTotal(cristal, CosmicClicker.getInstance().getCurrentPlanet().getCrystals());
             }
         });
@@ -146,10 +115,10 @@ public class MainActivity extends AppCompatActivity {
         btn_clicker_fonderie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CosmicClicker.getInstance().addEssences(1);
+                IBuilding b = CosmicClicker.getInstance().getCurrentPlanet().getBuildingByClazz(FonderieCrystalline.class);
+                CosmicClicker.getInstance().addEssences(b.getMultiplicator() == 0 ? 1 : b.getMultiplicator());
                 setTotal(sylvan_essence, CosmicClicker.getInstance().getEssences());
             }
         });
-
     }
 }
