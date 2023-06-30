@@ -1,5 +1,7 @@
 package fr.matteo_appmob.myapplication.backend.clicker;
 
+import android.media.MediaPlayer;
+
 import fr.matteo_appmob.myapplication.backend.planets.IPlanet;
 import fr.matteo_appmob.myapplication.backend.players.PlayerRecord;
 
@@ -16,6 +18,10 @@ public interface IClicker {
     PlayerRecord getPlayer();
     void setCurrentPlanet(IPlanet planet);
     void setPlayer(PlayerRecord player);
+
+    public void setMediaPlayer(MediaPlayer mediaPlayer);
+
+    public MediaPlayer getMediaPlayer();
 
     long getEssences();
     void addEssences(long essences);

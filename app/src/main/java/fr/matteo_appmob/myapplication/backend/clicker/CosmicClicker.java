@@ -5,10 +5,12 @@ import fr.matteo_appmob.myapplication.backend.players.PlayerRecord;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.media.MediaPlayer;
 public class CosmicClicker implements IClicker {
 
     private static IClicker _instance;
+
+    private static MediaPlayer mediaPlayer = null;
 
     private long          essenceCount  = 0L;
     private List<IPlanet> planets       = new ArrayList<>();
@@ -63,6 +65,19 @@ public class CosmicClicker implements IClicker {
 
     public void addEssences(long essences) {
         this.essenceCount += essences;
+    }
+
+    public void setMediaPlayer(MediaPlayer mediaPlayer) {
+        if (CosmicClicker.mediaPlayer != null) {
+            return;
+        }
+        mediaPlayer.setLooping(true);
+        mediaPlayer.setVolume(0.7f, 0.7f);
+        mediaPlayer.start();
+        CosmicClicker.mediaPlayer = mediaPlayer;
+    }
+    public MediaPlayer getMediaPlayer() {
+        return CosmicClicker.mediaPlayer;
     }
     private CosmicClicker() {
     }

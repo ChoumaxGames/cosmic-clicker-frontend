@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import fr.matteo_appmob.myapplication.backend.clicker.CosmicClicker;
+
 public class SettingsActivity extends AppCompatActivity {
     ImageView btnMute;
     ImageView btnUnmute;
@@ -49,6 +51,7 @@ public class SettingsActivity extends AppCompatActivity {
         btnMute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CosmicClicker.getInstance().getMediaPlayer().pause();
                 sound = false;
                 updateSound();
             }
@@ -57,6 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
         btnUnmute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CosmicClicker.getInstance().getMediaPlayer().start();
                 sound = true;
                 updateSound();
             }

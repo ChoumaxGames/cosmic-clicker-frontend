@@ -42,8 +42,8 @@ public class ShopActivity extends AppCompatActivity {
             return price / 1_000_000_000 + "b";
         } else if (price >= 1_000_000) {
             return price / 1_000_000 + "m";
-        } else if (price >= 1_000) {
-            return price / 1_000 + "k";
+        /*} else if (price >= 1_000) {
+            return price / 1_000 + "k";*/
         } else {
             return String.valueOf(price);
         }
